@@ -1,0 +1,20 @@
+What is white box Testing?
+White box testing is a software testing method that assumes that the internal implementation of the system is known to the tester.
+
+What do you understand by coding standards? 
+It is a common standard everyone uses to write their code.It is easier when many people work on the same code.
+
+What is FlowChart?
+A flowchart is a picture of the separate steps of a process in sequential order. It is basically a diagram that represents an algorithm.
+
+What is Algorithm?
+It is a sequence of steps to solve any problem with logical sequence of actions starting from input data to output.
+
+What are keywords  in  Pseudocode ?
+Display,Promt,Equals(=),Read,Write,Initialize
+
+Why Pseudocode is needed?
+Pseudocode is needed because it enables one to think about the solution without having to worry about the syntax.
+
+What is variables,constant and data types?
+variables are used to store and manipulate values in computer memory. Constant values are those values which cannot change their value during the execution of the program. Data types are used to define the variables in a program each datatype has different size.
