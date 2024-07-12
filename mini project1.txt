@@ -1,0 +1,78 @@
+create database mini_project1;
+use mini_project1;
+create table Publishers (
+publisher_id int primary key,
+publisher_name varchar(255) not null
+);
+
+insert into publishers values(2102,'Sahithya');
+insert into publishers values(2145,'Hema');
+insert into publishers values(2234,'Siva');
+insert into publishers values(2277,'Ramu');
+
+select * from publishers;
+
+create table Categories(category_id int primary key,category_name varchar(255) unique not null);
+
+insert into categories values(231,'Action');
+insert into categories values(432,'Crime');
+insert into categories values(234,'Fantasy');
+insert into categories values(122,'Fiction');
+
+select * from categories;
+
+create table users(
+user_id int primary key,
+user_name varchar(255) not null,
+email varchar(255) unique not null,
+phone_number bigint unique not null
+);
+
+insert into users values(132,'Abhi','tom@gmail.com','7534287484');
+insert into users values(133,'Hachi','aachi@gmail.com','9537482537');
+insert into users values(134,'Yami','yaam@gmail.com','9381565752');
+insert into users values(135,'Sahithya','sahi@gmail.com','9876345654');
+
+select * from users;
+
+create table books(
+book_id int primary key,
+title varchar(255) not null,
+ISBN int unique not null,
+publication_year date not null,
+publisher_id int,
+category_id int,
+author_name varchar(255) check(author_name is not null),
+foreign key (publisher_id) references publishers(publisher_id) on delete cascade,
+foreign key (category_id) references categories(category_id) on delete cascade
+);
+
+insert into books values(54456,'Blue Umbrella',22,'1999-01-14',2102,231,'John');
+insert into books values(54546,'Her Last Wish',23,'2000-06-21',2145,432,'Mike');
+insert into books values(76645,'Meluha',24,'1998-12-05',2234,234,'Sandy');
+insert into books values(78665,'Sherlock holmes',25,'1995-07-27',2277,122,'Sherlock');
+
+select * from books;
+
+create table Borrowings (
+borrow_id int primary key,
+user_id int,
+book_id int,
+borrow_date date not null,
+return_date date not null,
+foreign key(user_id) references users (user_id) on delete cascade,
+foreign key(book_id) references books (book_id) on delete cascade
+);
+
+insert into Borrowings values(1003,132,54456,'2019-06-29','2019-07-15');
+insert into Borrowings values(1763,133,54546,'2020-02-12','2020-03-28');
+insert into Borrowings values(1846,134,76645,'2018-11-24','2018-11-28');
+insert into Borrowings values(1936,135,78665,'2019-12-30','2020-01-22');
+
+select * from borrowings;
+
+select publisher_name,category_name,user_name,email,phone_number,title,ISBN,publication_year,author_name,borrow_id,borrow_date,return_date from books b 
+join publishers p on(b.publisher_id=p.publisher_id)
+join categories c on(b.category_id=c.category_id)
+join Borrowings br on(b.book_id=br.Book_id)
+join users u on(br.user_id=u.user_id);
