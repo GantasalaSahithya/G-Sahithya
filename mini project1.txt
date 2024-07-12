@@ -12,7 +12,18 @@ insert into publishers values(2277,'Ramu');
 
 select * from publishers;
 
-create table Categories(category_id int primary key,category_name varchar(255) unique not null);
+publisher_id	publisher_name
+2102	          Sahithya
+2145	          Hema
+2234	          Siva
+2277	          Ramu
+
+
+
+create table Categories(
+category_id int primary key,
+category_name varchar(255) unique not null
+);
 
 insert into categories values(231,'Action');
 insert into categories values(432,'Crime');
@@ -20,6 +31,13 @@ insert into categories values(234,'Fantasy');
 insert into categories values(122,'Fiction');
 
 select * from categories;
+
+category_id	category_name
+231	Action
+432	Crime
+234	Fantasy
+122	Fiction
+
 
 create table users(
 user_id int primary key,
@@ -34,6 +52,13 @@ insert into users values(134,'Yami','yaam@gmail.com','9381565752');
 insert into users values(135,'Sahithya','sahi@gmail.com','9876345654');
 
 select * from users;
+
+user_id	user_name	email	phone_number
+132	Abhi	tom@gmail.com	7534287484
+133	Hachi	aachi@gmail.com	9537482537
+134	Yami	yaam@gmail.com	9381565752
+135	Sahithya	sahi@gmail.com	9876345654
+
 
 create table books(
 book_id int primary key,
@@ -54,6 +79,14 @@ insert into books values(78665,'Sherlock holmes',25,'1995-07-27',2277,122,'Sherl
 
 select * from books;
 
+book_id	title	        ISBN	publication_year	publisher_id	category_id	author_name
+54456	Blue Umbrella	22	1/14/1999	                    2102	231	John
+54546	Her Last Wish	23	6/21/2000	                    2145	432	Mike
+76645	Meluha	        24	12/5/1998	                    2234	234	Sandy
+78665	Sherlock holmes	25	7/27/1995	                    2277	122	Sherlock
+
+
+
 create table Borrowings (
 borrow_id int primary key,
 user_id int,
@@ -70,9 +103,24 @@ insert into Borrowings values(1846,134,76645,'2018-11-24','2018-11-28');
 insert into Borrowings values(1936,135,78665,'2019-12-30','2020-01-22');
 
 select * from borrowings;
+borrow_id user_id book_id borrow_date	return_date
+
+
+1003	132	54456	2019-06-29	2019-07-15
+1763	133	54546	2020-02-12	2020-03-28
+1846	134	76645	2018-11-24	2018-11-28
+1936	135	78665	2019-12-30	2020-01-22
 
 select publisher_name,category_name,user_name,email,phone_number,title,ISBN,publication_year,author_name,borrow_id,borrow_date,return_date from books b 
 join publishers p on(b.publisher_id=p.publisher_id)
 join categories c on(b.category_id=c.category_id)
 join Borrowings br on(b.book_id=br.Book_id)
 join users u on(br.user_id=u.user_id);
+
+publisher_name	category_name	user_name	email	phone_number	title	ISBN	publication_year	author_name	borrow_id	borrow_date	return_date
+
+
+SahithyaAction	Abhi	tom@gmail.com	7534287484	Blue Umbrella	22	1999-01-14	John	1003	        2019-06-29      2019-07-15
+Hema	Crime	Hachi	aachi@gmail.com	9537482537	Her Last Wish	23	2000-06-21	Mike	1763	        2020-02-12	2020-03-28
+Siva	Fantasy	Yami	yaam@gmail.com	9381565752	Meluha	        24	1998-12-05	Sandy	1846	        2018-11-24	2018-11-28
+Ramu	Fiction	Sahithyasahi@gmail.com	9876345654	Sherlock holmes	25	1995-07-27	Sherlock 1936	        2019-12-30      2020-01-22
